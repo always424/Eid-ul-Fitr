@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eid Mubarak - Eid-ul-Fitr</title>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+  
+  <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet" />
+  <style>
+
+    body {
+      font-family: 'Amiri', serif;
+      background: linear-gradient(-45deg, #0a2342, #2b4e6e, #1a6c74, #0f8c8c);
+      background-size: 400% 400%;
+      animation: gradientGlow 15s ease infinite;
+      color: #f1c40f;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      transition: background 0.5s ease;
+    }
+    @keyframes gradientGlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .overlay {
+      background-color: rgba(10, 35, 66, 0.85);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .content {
+      text-align: center;
+      padding: 40px;
+      border: 2px solid #f1c40f;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .content:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+    h1, h5, p, .counter-display {
+      transition: transform 0.3s, color 0.3s;
+    }
+    h1:hover, p:hover, h5:hover, .counter-display:hover {
+      transform: translateY(-3px);
+      color: #d4ac0d;
+    }
+    #islamicDate {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      transition: transform 0.3s;
+    }
+    #islamicDate:hover {
+      transform: scale(1.05);
+    }
+    .btn-custom, .btn-translate, .btn-tasbih, .btn-reset {
+      background-color: #f1c40f;
+      border: none;
+      color: #0a2342;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin: 5px;
+      transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    }
+    .btn-custom:hover, .btn-translate:hover, .btn-tasbih:hover, .btn-reset:hover {
+      background-color: #d4ac0d;
+      color: #fff;
+      transform: scale(1.05);
+    }
+    #extraMessage {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      display: none;
+      transition: opacity 0.5s;
+    }
+    #extraMessage:hover {
+      opacity: 0.8;
+    }
+    /* Tasbih Counter Styles */
+    .tasbih-container {
+      margin-top: 30px;
+      padding: 15px;
+      border-top: 1px solid #f1c40f;
+    }
+    .counter-display {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideInDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes slideInUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #f1c40f;
+      border-top: 2px solid #f1c40f;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="container content">
+      <h1 id="heading">Eid Mubarak!</h1>
+      <p id="subheading">Eid-ul-Fitr</p>
+      <div id="islamicDate"></div>
+      <!-- Extended Wishing Note -->
+      <p id="wishingNote">
+        On this blessed occasion of Eid-ul-Fitr, may your heart be filled with endless joy and your home with peace. As we celebrate the end of Ramadan, let us cherish the moments of spiritual growth, reflection, and gratitude. May this day bring a renewed sense of hope and love into your life. May you be blessed with good health, success, and the warmth of family and friends. Let every smile and every prayer remind you of the beauty of faith and the strength that comes from unity. Embrace the spirit of forgiveness and compassion, and let your generosity shine bright. May your journey ahead be prosperous, and may every challenge be met with resilience and determination. On this joyous day, we extend our heartfelt wishes for a truly fulfilling and blessed Eid. Enjoy the festivities and remember that every moment is a gift from Allah.
+      </p>
+      <button id="celebrateBtn" class="btn btn-custom">Celebrate</button>
+      <button id="translateBtn" class="btn btn-translate">Translate to Bangla</button>
+      <div id="extraMessage">May joy and blessings fill your life!</div>
+      <footer>
+        <p>&copy; 2025 Nafis Abdullah. All Rights Reserved.</p>
+        <p>"The best among you are those who bring the greatest benefits to others." - Prophet Muhammad (PBUH)</p>
+    </footer>
+  
+  <script>
+    
+    function setIslamicDate() {
+      const islamicFormatter = new Intl.DateTimeFormat('ar-TN-u-ca-islamic', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      });
+      const islamicDate = islamicFormatter.format(new Date());
+      document.getElementById('islamicDate').textContent = 'التاريخ الهجري: ' + islamicDate;
+    }
+    setIslamicDate();
+    
+    
+    document.getElementById('celebrateBtn').addEventListener('click', function() {
+      const extraMsg = document.getElementById('extraMessage');
+      extraMsg.style.display = (extraMsg.style.display === 'none' || extraMsg.style.display === '') ? 'block' : 'none';
+    });
+    
+    
+    const texts = {
+      english: {
+        heading: "Eid Mubarak!",
+        subheading: "Eid-ul-Fitr",
+        wishingNote: "On this blessed occasion of Eid-ul-Fitr, may your heart be filled with endless joy and your home with peace. As we celebrate the end of Ramadan, let us cherish the moments of spiritual growth, reflection, and gratitude. May this day bring a renewed sense of hope and love into your life. May you be blessed with good health, success, and the warmth of family and friends. Let every smile and every prayer remind you of the beauty of faith and the strength that comes from unity. Embrace the spirit of forgiveness and compassion, and let your generosity shine bright. May your journey ahead be prosperous, and may every challenge be met with resilience and determination. On this joyous day, we extend our heartfelt wishes for a truly fulfilling and blessed Eid. Enjoy the festivities and remember that every moment is a gift from Allah.",
+        extraMessage: "May joy and blessings fill your life!",
+        translateBtn: "Translate to Bangla"
+      },
+      bangla: {
+        heading: "ঈদ মোবারক!",
+        subheading: "ঈদ-উল-ফিতর",
+        wishingNote: "এই পবিত্র ঈদ-উল-ফিতরের উপলক্ষে, আপনার হৃদয় অজস্র আনন্দে পূর্ণ হোক এবং আপনার গৃহ শান্তিতে ভরে উঠুক। রমজানের শেষ উদযাপনে, আসুন আমরা আধ্যাত্মিক উন্নতি, চিন্তাভাবনা এবং কৃতজ্ঞতার মুহূর্তগুলি সংরক্ষণ করি। এই দিন আপনার জীবনে নতুন আশার এবং ভালোবাসার ছোঁয়া নিয়ে আসুক। আপনি সুস্থতা, সাফল্য এবং পরিবারের ও বন্ধুদের উষ্ণতায় আশীর্বাদিত হোন। প্রতিটি হাসি এবং প্রতিটি প্রার্থনা আপনাকে বিশ্বাসের সৌন্দর্য এবং একতার শক্তি স্মরণ করিয়ে দিক। ক্ষমাশীলতা এবং সহানুভূতির চেতনাকে গ্রহণ করুন, এবং আপনার উদারতা উজ্জ্বলভাবে দীপ্ত হোক। আপনার আগামি যাত্রা সমৃদ্ধিশালী হোক এবং প্রতিটি চ্যালেঞ্জ ধৈর্য এবং সংকল্পের সাথে মোকাবিলা হোক। এই আনন্দময় দিনে, আমরা আপনার জন্য আন্তরিক শুভেচ্ছা জানাই একটি সত্যিই পরিপূর্ণ এবং আশীর্বাদিত ঈদ উপলক্ষে। উৎসব উপভোগ করুন এবং মনে রাখবেন যে প্রতিটি মুহূর্ত আল্লাহর কাছ থেকে একটি উপহার।",
+        extraMessage: "আপনার জীবনে আনন্দ ও আশীর্বাদ বয়ে আনুক!",
+        translateBtn: "Translate to English"
+      }
+    };
+    
+    let currentLanguage = 'english';
+    
+    document.getElementById('translateBtn').addEventListener('click', function() {
+      currentLanguage = (currentLanguage === 'english') ? 'bangla' : 'english';
+      document.getElementById('heading').textContent = texts[currentLanguage].heading;
+      document.getElementById('subheading').textContent = texts[currentLanguage].subheading;
+      document.getElementById('wishingNote').textContent = texts[currentLanguage].wishingNote;
+      document.getElementById('extraMessage').textContent = texts[currentLanguage].extraMessage;
+      this.textContent = texts[currentLanguage].translateBtn;
+    });
+    
+    // Tasbih Counter logic
+    
+  </script>
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
